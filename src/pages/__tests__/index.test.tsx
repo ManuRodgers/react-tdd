@@ -1,14 +1,13 @@
 import 'jest';
-import Index from '..';
 import React from 'react';
-import renderer, { ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
+import Index from '..';
+import { shallow, ShallowWrapper } from 'enzyme';
+import 'jest-enzyme';
 
-describe('Page: index', () => {
-  it('Render correctly', () => {
-    const wrapper: ReactTestRenderer = renderer.create(<Index />);
-    expect(wrapper.root.children.length).toBe(1);
-    const outerLayer = wrapper.root.children[0] as ReactTestInstance;
-    expect(outerLayer.type).toBe('div');
-    expect(outerLayer.children.length).toBe(2);
+describe(`Page: Index`, () => {
+  it('Render correctly', function() {
+    const wrapper: ShallowWrapper = shallow(<Index />);
+    expect(wrapper.find(`[data-test="container"]`)).toExist();
+    // expect(wrapper.find(`[data-test="container"]`).prop<string>('title')).toBe(`manu`);
   });
 });
